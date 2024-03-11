@@ -3,18 +3,18 @@ services:
   nats:
     image: nats
     ports:
-      - "34222:4222"
+      - "4222:4222"
     expose:
-      - 34222
+      - 4222
   replay:
-    image: oesinc/openfmb.adapters:a008ef9
+    image: oesinc/openfmb.adapters:a30d1d0
     depends_on:
       - nats
     volumes:
       - ./replay:/cfg
     command: -c /cfg/adapter.yaml
   hmi:
-    image: oesinc/openfmb.hmi:latest
+    image: oesinc/openfmb.hmi:v2.1.0
     depends_on:
       - nats
     volumes:

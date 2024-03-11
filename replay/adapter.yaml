@@ -1,6 +1,6 @@
 file:
   id: openfmb-adapter-main
-  edition: 2.0
+  edition: 2.1
   version: 1.0.0.0
   plugin: ''
 logging:
@@ -13,51 +13,9 @@ logging:
     max-size: 1048576
     max-files: 3
 plugins:
-  capture:
-    enabled: false
-    file: /cfg/capture.txt
   replay:
     enabled: true
     file: /cfg/capture.txt
-  dnp3-master:
-    enabled: false
-    thread-pool-size: 1
-    masters: []   
-  dnp3-outstation:
-    enabled: false
-    thread-pool-size: 1
-    outstations: []
-  modbus-master:
-    enabled: false
-    thread-pool-size: 1
-    sessions: []
-  modbus-outstation:
-    enabled: false
-    thread-pool-size: 1
-    sessions: []
-  goose-pub:
-    enabled: false
-    thread-pool-size: 1
-    goCb: []
-  goose-sub:
-    enabled: false
-    thread-pool-size: 1
-    goCb: []
-  mqtt:
-    enabled: false
-    max-queued-messages: 100
-    server-address: 127.0.0.1
-    client-id: client1
-    connect-retry-delay-ms: 5000
-    security:
-      security-type: tls_mutual_auth
-      ca-trusted-cert-file: cert.pem
-      client-private-key-file: client_key.pem
-      client-cert-chain-file: client_cert.pem
-      username: ''
-      password: ''
-    publish: []
-    subscribe: []
   nats:
     enabled: true
     max-queued-messages: 100
@@ -65,9 +23,6 @@ plugins:
     connect-retry-seconds: 5
     security:
       security-type: none
-      ca-trusted-cert-file: cert.pem
-      client-private-key-file: client_key.pem
-      client-cert-chain-file: client_cert.pem
     publish:
     - profile: ESSReadingProfile
       subject: '*'
@@ -88,14 +43,4 @@ plugins:
     - profile: MeterReadingProfile
       subject: '*'
     subscribe: []
-  timescaledb:
-    enabled: false
-    database-url: postgresql://user:password@localhost:5432/dbname
-    store-measurement: true
-    table-name: data
-    store-raw-message: false
-    raw-table-name: raw_data
-    raw-data-format: 0
-    max-queued-messages: 100
-    connect-retry-seconds: 5
 ...
