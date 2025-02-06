@@ -1,0 +1,149 @@
+{
+    "statusMessageInfo": {
+        "messageInfo": {
+            "identifiedObject": {
+                "mRID": "03bbc9a9-d655-4ad2-a694-f598cefcb1ec",
+                "name": "TRANSACTION_PROFILE"
+            },
+            "messageTimeStamp": {
+                "seconds": "1738351822",
+                "nanoseconds": 284101952
+            }
+        }
+    },
+    "conductingEquipment": {
+        "namedObject": {
+            "name": "blink"
+        },
+        "mRID": "16030300-ed1f-4652-9c1d-2907128113f7"
+    },
+    "resourceStatus": {
+        "analogEventAndStatusGGIO": [
+            {
+                "logicalNode": {
+                    "identifiedObject": {
+                        "name": "Connection ID"
+                    }
+                },
+                "AnIn": {
+                    "mag": 1
+                }
+            },
+            {
+                "logicalNode": {
+                    "identifiedObject": {
+                        "name": "Transaction ID"
+                    }
+                },
+                "AnIn": {
+                    "mag": -1
+                }
+            },
+            {
+                "logicalNode": {
+                    "identifiedObject": {
+                        "name": "Start Transaction Time"
+                    }
+                }
+            },
+            {
+                "logicalNode": {
+                    "identifiedObject": {
+                        "name": "Stop Transaction Time"
+                    }
+                }
+            },
+            {
+                "logicalNode": {
+                    "identifiedObject": {
+                        "name": "Meter Start"
+                    }
+                }
+            },
+            {
+                "logicalNode": {
+                    "identifiedObject": {
+                        "name": "Meter Stop"
+                    }
+                }
+            },
+            {
+                "logicalNode": {
+                    "identifiedObject": {
+                        "name": "Power.Active.Import"
+                    }
+                },
+                "AnIn": {}
+            },
+            {
+                "logicalNode": {
+                    "identifiedObject": {
+                        "name": "Energy.Active.Import.Register"
+                    }
+                },
+                "AnIn": {}
+            },
+            {
+                "logicalNode": {
+                    "identifiedObject": {
+                        "name": "Current.Import"
+                    }
+                },
+                "AnIn": {}
+            }
+        ],
+        "stringEventAndStatusGGIO": [
+            {
+                "logicalNode": {
+                    "identifiedObject": {
+                        "name": "Connector State"
+                    }
+                },
+                "StrIn": {
+                    "stVal": "Available"
+                }
+            },
+            {
+                "logicalNode": {
+                    "identifiedObject": {
+                        "name": "Start Transaction Time"
+                    }
+                }
+            },
+            {
+                "logicalNode": {
+                    "identifiedObject": {
+                        "name": "Stop Transaction Time"
+                    }
+                }
+            },
+            {
+                "logicalNode": {
+                    "identifiedObject": {
+                        "name": "Vendor Error Code"
+                    }
+                }
+            },
+            {
+                "logicalNode": {
+                    "identifiedObject": {
+                        "name": "Others"
+                    }
+                },
+                "StrIn": {
+                    "stVal": "{\"status\":\"Accepted\"}"
+                }
+            },
+            {
+                "logicalNode": {
+                    "identifiedObject": {
+                        "name": "Heartbeat"
+                    }
+                },
+                "StrIn": {
+                    "stVal": "2025-01-31 19:29:40"
+                }
+            }
+        ]
+    }
+}

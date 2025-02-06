@@ -1,0 +1,58 @@
+file:
+  id: openfmb-adapter-main
+  edition: 2.1
+  version: 1.0.0.0
+  plugin: ''
+logging:
+  logger-name: application
+  console:
+    enabled: true
+  rotating-file:
+    enabled: true
+    path: adapter.log
+    max-size: 1048576
+    max-files: 3
+plugins:
+  nats:
+    enabled: true
+    max-queued-messages: 100
+    connect-url: nats://nats:4222
+    connect-retry-seconds: 5
+    security:
+      security-type: none
+    publish: []
+    subscribe:
+    # - profile: ESSReadingProfile
+    #   subject: '*'
+    # - profile: ESSStatusProfile
+    #   subject: '*'
+    # - profile: SolarReadingProfile
+    #   subject: '*'
+    # - profile: SolarStatusProfile
+    #   subject: '*'
+    # - profile: SwitchReadingProfile
+    #   subject: '*'
+    # - profile: SwitchStatusProfile
+    #   subject: '*'
+    # - profile: LoadReadingProfile
+    #   subject: '*'
+    # - profile: LoadStatusProfile
+    #   subject: '*'
+    # - profile: MeterReadingProfile
+    #   subject: '*'
+    - profile: EVSEReadingProfile
+      subject: '*'
+    - profile: EVSEStatusProfile
+      subject: '*'
+  timescaledb:
+    enabled: true
+    database-url: postgresql://openfmb_user:password@timescale-db:5432/postgres
+    store-measurement: true
+    table-name: openfmb.data
+    store-raw-message: true
+    raw-table-name: openfmb.raw_data
+    raw-data-format: 0  # 0 = json; 1 = protobuf
+    max-queued-messages: 100  # how many messages to buffer before discarding the oldest
+    connect-retry-seconds: 5  # time to wait between to connection attempts
+...
+                                                                                      w

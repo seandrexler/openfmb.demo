@@ -1,0 +1,72 @@
+{
+    "statusMessageInfo": {
+        "messageInfo": {
+            "identifiedObject": {
+                "mRID": "3d171217-49f6-4541-a1ed-b346b5dddae2",
+                "name": "TRANSACTION_PROFILE"
+            },
+            "messageTimeStamp": {
+                "seconds": "1738351822",
+                "nanoseconds": 730447439
+            }
+        }
+    },
+    "conductingEquipment": {
+        "namedObject": {
+            "name": "SIEMENS"
+        },
+        "mRID": "93b990c2-3a86-4a41-a271-1a94b84267cf"
+    },
+    "resourceStatus": {
+        "analogEventAndStatusGGIO": [
+            {
+                "logicalNode": {
+                    "identifiedObject": {
+                        "name": "Vehicle Charging Amps"
+                    }
+                },
+                "AnIn": {
+                    "mag": 24
+                }
+            }
+        ],
+        "integerEventAndStatusGGIO": [
+            {
+                "logicalNode": {
+                    "identifiedObject": {
+                        "name": "WattHours"
+                    }
+                },
+                "IntIn": {
+                    "stVal": 1063751
+                }
+            },
+            {
+                "logicalNode": {
+                    "identifiedObject": {
+                        "name": "Connector State"
+                    }
+                },
+                "IntIn": {
+                    "stVal": 1
+                }
+            },
+            {
+                "logicalNode": {
+                    "identifiedObject": {
+                        "name": "Watts"
+                    }
+                },
+                "IntIn": {}
+            },
+            {
+                "logicalNode": {
+                    "identifiedObject": {
+                        "name": "Amps"
+                    }
+                },
+                "IntIn": {}
+            }
+        ]
+    }
+}

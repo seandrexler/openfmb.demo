@@ -1,0 +1,48 @@
+{
+    "statusMessageInfo": {
+        "messageInfo": {
+            "identifiedObject": {
+                "mRID": "2bef1867-6835-4234-af36-506265f0731b"
+            },
+            "messageTimeStamp": {
+                "seconds": "1738351822",
+                "nanoseconds": 179437454
+            }
+        }
+    },
+    "evse": {
+        "conductingEquipment": {
+            "namedObject": {
+                "name": "1166122"
+            },
+            "mRID": "732bb1d7-3028-4490-a717-5a296a85a7c3"
+        }
+    },
+    "evseStatus": {
+        "eventAndStatusDESE": [
+            {
+                "logicalNodeForEventAndStatus": {
+                    "EEHealth": {
+                        "d": ""
+                    }
+                },
+                "eventAndStatusDEAO": {
+                    "eventAndStatusDEEV": {
+                        "logicalNodeForEventAndStatus": {
+                            "EEHealth": {
+                                "d": ""
+                            }
+                        },
+                        "EVId": "1166122",
+                        "WHReq": {
+                            "mag": 72436
+                        }
+                    },
+                    "ConnSt": {
+                        "stVal": "EVACConnectionStateKind_StateB"
+                    }
+                }
+            }
+        ]
+    }
+}
