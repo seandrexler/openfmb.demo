@@ -1,0 +1,83 @@
+networks:
+  default:
+    name: openfmb.demo
+    driver: bridge
+
+volumes:
+  timescaledb-data:
+
+services:
+  nats:
+    profiles:
+      - evse
+    image: nats:2.9.25-alpine3.18
+    container_name: nats
+    ports:
+      - "4222:4222"
+      - "8222:8222"
+
+  repeat:
+    profiles:
+      - evse
+    image: oesinc/openfmb.adapters:v2.2.0-e829322c
+    container_name: repeat
+    depends_on:
+      - nats
+      # - timescaledb
+    volumes:
+      - ./repeat:/cfg
+    command: -c /cfg/adapter.yaml
+  replay:
+    profiles:
+      - ui
+    image: oesinc/openfmb.adapters:a30d1d0
+    container_name: replay
+    depends_on:
+      - nats
+    volumes:
+      - ./replay:/cfg
+    command: -c /cfg/adapter.yaml
+  save:
+    profiles:
+      - ui
+    image: oesinc/openfmb.adapters:a30d1d0
+    container_name: save
+    depends_on:
+      - nats
+    volumes:
+      - ./save:/cfg
+    command: -c /cfg/adapter.yaml
+  hmi:
+    profiles:
+      - ui
+    image: oesinc/openfmb.hmi:v2.1.0
+    container_name: hmi
+    depends_on:
+      - nats
+    volumes:
+      - ./hmi:/cfg
+    environment:
+      APP_CONF: /cfg/config/app.toml
+      APP_DIR_NAME: /cfg
+    ports:
+      - "32771:32771"
+  timescaledb:
+    profiles:
+      - evse
+      - db
+    image: timescale/timescaledb:2.18.0-pg16-oss
+    container_name: timescale-db
+    ports:
+      - "5432:5432"
+    environment:
+      # - POSTGRES_DB=openfmb
+      - POSTGRES_PASSWORD=password
+      # - POSTGRES_USER=openfmb-user
+    volumes:
+      - timescaledb-data:/var/lib/postgresql/data
+      - ./schema:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
