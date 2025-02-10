@@ -1,0 +1,24 @@
+apiVersion: 1
+
+datasources:
+  - name: TimescaleDB
+    type: postgres
+    access: proxy
+    database: postgres
+    orgId: 1
+    url: http://odso-dte-phost-02.oesinc.dev:5434
+    isDefault: false
+  - name: FluentDB
+    type: postgres
+    access: proxy
+    database: postgres
+    orgId: 1
+    url: http://odso-dte-phost-02.oesinc.dev:5433
+    isDefault: false
+  - name: HistorianDB
+    type: postgres
+    access: proxy
+    database: postgres
+    orgId: 1
+    url: http://odso-dte-phost-02.oesinc.dev:5432
+    isDefault: false
