@@ -25,6 +25,8 @@ plugins:
       security-type: none
     publish: []
     subscribe:
-    - profile: RecloserStatusProfile
+    - profile: EVSEReadingProfile
+      subject: '*'
+    - profile: EVSEStatusProfile
       subject: '*'
 ...
