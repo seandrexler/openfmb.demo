@@ -5,11 +5,14 @@ networks:
 
 volumes:
   timescaledb-data:
+  grafana-data:
 
 services:
   nats:
     profiles:
       - evse
+      - ui
+      - save
     image: nats:2.9.25-alpine3.18
     container_name: nats
     ports:
@@ -39,8 +42,8 @@ services:
     command: -c /cfg/adapter.yaml
   save:
     profiles:
-      - ui
-    image: oesinc/openfmb.adapters:a30d1d0
+      - save
+    image: oesinc/openfmb.adapters:v2.2.0-e829322c
     container_name: save
     depends_on:
       - nats
@@ -65,10 +68,10 @@ services:
     profiles:
       - evse
       - db
-    image: timescale/timescaledb:2.18.0-pg16-oss
+    image: timescale/timescaledb:2.18.0-pg16
     container_name: timescale-db
     ports:
-      - "5432:5432"
+      - "5434:5432"
     environment:
       # - POSTGRES_DB=openfmb
       - POSTGRES_PASSWORD=password
@@ -81,3 +84,25 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+
+  grafana:
+    profiles:
+      - evse
+    image: grafana/grafana:${GRAFANA_TAG:-latest}
+    container_name: grafana
+    restart: unless-stopped
+    environment:
+      - GF_LOG_LEVEL=debug
+      - GF_SERVER_ROOT_URL=http://my.grafana.server/
+      - GF_INSTALL_PLUGINS=grafana-clock-panel, grafana-simple-json-datasource
+      - GF_PATHS_CONFIG=/usr/share/grafana/custom/grafana.ini
+      - GF_PATHS_PROVISIONING=/usr/share/grafana/provisioning
+    ports:
+      - "3000:3000"
+    volumes:
+      # Input(s):
+      - ./grafana/config/custom.ini:/usr/share/grafana/custom/grafana.ini:ro
+      - ./grafana/dashboards:/usr/share/grafana/dashboards:rw
+      - ./grafana/provisioning:/usr/share/grafana/provisioning:rw
+      # Output(s):
+      - grafana-data:/var/lib/grafana   # use docker volume
